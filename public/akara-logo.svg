@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" fill="none" role="img">
+  <title>Akara Denim and Apparel Manufacturing</title>
+  <rect x="2" y="10" width="44" height="44" rx="10" fill="#0E1B2E"/>
+  <path d="M14 42L24 18L34 42" stroke="#FAF9F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18 35H30" stroke="#C87D32" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 2"/>
+  <circle cx="24" cy="27" r="2" fill="#FAF9F6"/>
+  <text x="56" y="38" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif" font-size="28" font-weight="700" letter-spacing="4" fill="#0E1B2E">AKARA</text>
+  <text x="58" y="54" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" letter-spacing="3" fill="#64748B">DENIM &amp; APPAREL</text>
+</svg>

@@ -1,26 +1,118 @@
+/* biome-ignore-all lint/complexity/noImportantStyles: Reduced-motion overrides must defeat component motion declarations. */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+    :root {
+        --color-black: #1a1c1a;
+        --color-dark-navy: #0f1c2f;
+        --color-secondary-blue: #4059aa;
+        --color-accent-orange: #c87d32;
+        --color-warm-bg: #faf9f6;
+        --color-light-gray: #f4f3f0;
+        --color-muted-text: #44474c;
+        --color-muted-blue: #64748b;
+    }
+
+    * {
+        @apply border-[#e3e2df];
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        @apply antialiased;
+    }
+
+    :focus-visible {
+        outline: 2px solid #4059aa;
+        outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            scroll-behavior: auto !important;
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer utilities {
+    .animate-fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+    }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+    .animate-slide-up {
+        animation: slideUp 0.5s ease-out;
+    }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    .animate-scale-in {
+        animation: scaleIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .hover-scale {
+        @apply transition-transform duration-300 hover:scale-105;
+    }
+
+    .hover-shadow {
+        @apply transition-shadow duration-150;
+    }
+    .hover-shadow:hover {
+        box-shadow:
+            0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .text-gradient {
+        background: linear-gradient(135deg, #0f1c2f 0%, #4059aa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-dot-pattern {
+        background-image: radial-gradient(#e3e2df 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+
+    .focus-ring {
+        @apply focus:outline-none focus:ring-2 focus:ring-[#4059aa] focus:ring-offset-2;
+    }
 }

@@ -1,3 +1,7 @@
 allowBuilds:
-  sharp: false
-  unrs-resolver: false
+  core-js: true
+minimumReleaseAgeExclude:
+  - react-resizable-panels@4.14.6 || 4.15.3
+  - shadcn@4.22.1 || 4.23.0
+  - lucide-react@1.63.0 || 1.65.0
+  - cn@0.5.1

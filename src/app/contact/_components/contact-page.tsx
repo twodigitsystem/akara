@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { SiteFooter } from "@/components/footer"
 import { SiteHeader } from "@/components/header"
+import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants"
 import { RfqForm } from "./rfq-form"
 
 const categories: [string, string, string][] = [
@@ -61,17 +62,17 @@ export function ContactPage() {
                                     <strong className="text-black">
                                         Direct desk:
                                     </strong>{" "}
-                                    {process.env.NEXT_PUBLIC_CONTACT_PHONE}
+                                    {CONTACT_PHONE}
                                 </p>
                                 <p>
                                     <strong className="text-black">
                                         Email:
                                     </strong>{" "}
                                     <a
-                                        href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
+                                        href={`mailto:${CONTACT_EMAIL}`}
                                         className="text-[#4059aa] underline underline-offset-2"
                                     >
-                                        {process.env.NEXT_PUBLIC_CONTACT_EMAIL}
+                                        {CONTACT_EMAIL}
                                     </a>
                                 </p>
                             </div>

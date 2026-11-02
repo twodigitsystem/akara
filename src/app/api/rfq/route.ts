@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getMinimumOrderQuantity, getProductByIdentifier } from "@/lib/products"
+import { CONTACT_PHONE } from "@/lib/constants"
 
 const VALID_CATEGORIES = new Set([
     "mens",
@@ -148,7 +149,7 @@ export async function POST(request: NextRequest) {
     }
 
     const webhookUrl = process.env.RFQ_WEBHOOK_URL
-    const phone = process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "+91 7817 966 192"
+    const phone = CONTACT_PHONE
 
     if (!webhookUrl) {
         return NextResponse.json(

@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { SiteFooter } from "@/components/footer"
 import { SiteHeader } from "@/components/header"
+import { CONTACT_PHONE } from "@/lib/constants"
 
 export const metadata: Metadata = {
     title: "Privacy Policy",
@@ -138,14 +139,14 @@ export default function PrivacyPage() {
                                 </Link>{" "}
                                 or call{" "}
                                 <a
-                                    href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}
+                                    href={`tel:${CONTACT_PHONE}`}
                                     className="inline-flex items-center gap-1 font-medium text-[#4059aa] underline underline-offset-2"
                                 >
                                     <Phone
                                         aria-hidden="true"
                                         className="h-3.5 w-3.5"
                                     />
-                                    {process.env.NEXT_PUBLIC_CONTACT_PHONE}
+                                    {CONTACT_PHONE}
                                 </a>
                                 .
                             </p>

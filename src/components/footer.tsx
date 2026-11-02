@@ -1,6 +1,7 @@
 import { ArrowUpRight, Mail, Package, Phone } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants"
 
 const exploreLinks = [
     { href: "/shop", label: "Product catalog" },
@@ -118,24 +119,24 @@ export function SiteFooter() {
                             Ahmedabad, India
                         </p>
                         <a
-                            href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}
+                            href={`tel:${CONTACT_PHONE}`}
                             className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white transition-colors hover:text-[#b8c5ff]"
                         >
                             <Phone
                                 aria-hidden="true"
                                 className="h-4 w-4 text-[#b8c5ff]"
                             />
-                            {process.env.NEXT_PUBLIC_CONTACT_PHONE}
+                            {CONTACT_PHONE}
                         </a>
                         <a
-                            href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
+                            href={`mailto:${CONTACT_EMAIL}`}
                             className="mt-1 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white transition-colors hover:text-[#b8c5ff]"
                         >
                             <Mail
                                 aria-hidden="true"
                                 className="h-4 w-4 text-[#b8c5ff]"
                             />
-                            {process.env.NEXT_PUBLIC_CONTACT_EMAIL}
+                            {CONTACT_EMAIL}
                         </a>
                         <Link
                             href="/contact"

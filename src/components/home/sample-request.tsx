@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { CONTACT_PHONE } from "@/lib/constants"
 
 export function SampleRequest() {
     return (
@@ -25,10 +26,10 @@ export function SampleRequest() {
                                 Ask About Samples
                             </Link>
                             <a
-                                href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}
+                                href={`tel:${CONTACT_PHONE}`}
                                 className="inline-flex min-h-11 items-center rounded border border-[#c7c8c3] px-5 py-3 text-sm font-semibold text-[#1b2433] transition hover:border-[#586a87] hover:text-[#0d1a2d]"
                             >
-                                {process.env.NEXT_PUBLIC_CONTACT_PHONE}
+                                {CONTACT_PHONE}
                             </a>
                         </div>
                     </div>

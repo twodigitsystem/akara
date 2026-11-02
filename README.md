@@ -1,6 +1,6 @@
 # Akara — Denim & Apparel Product References
 
-Product-reference and RFQ website for Akara. Catalog images are illustrative; product specifications, materials, minimums, production capabilities, timelines, certifications, and other commercial details are confirmed for each inquiry rather than represented as verified catalog facts.
+Product-reference and RFQ website for Akara (S.Archana Garments), Ahmedabad, India. Catalog images are illustrative; product specifications, materials, minimums, production capabilities, timelines, certifications, and other commercial details are confirmed for each inquiry rather than represented as verified catalog facts.
 
 ## Tech Stack
 
@@ -9,6 +9,7 @@ Product-reference and RFQ website for Akara. Catalog images are illustrative; pr
 - [Tailwind CSS v4](https://tailwindcss.com) — via `@tailwindcss/postcss` (no separate Tailwind config file)
 - [shadcn/ui](https://ui.shadcn.com) components (`base-luma` style) + [Lucide](https://lucide.dev) icons
 - [Biome](https://biomejs.dev) — linting and formatting
+- [jsPDF](https://github.com/parallax/jsPDF) — client-side PDF export for the Quote Deck
 - Fonts via [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts): Hanken Grotesk, Space Grotesk, JetBrains Mono
 - Package manager: **pnpm**
 
@@ -23,8 +24,6 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing any page under `src/app`; the page auto-updates as you edit.
-
 ### Available Scripts
 
 | Script          | Description                       |
@@ -35,26 +34,38 @@ You can start editing any page under `src/app`; the page auto-updates as you edi
 | `pnpm lint`     | Run Biome checks                  |
 | `pnpm format`   | Format the codebase with Biome    |
 
+## Environment Variables
+
+Only one server-side variable is required, and only when RFQ delivery is configured:
+
+| Variable          | Required | Description                                              |
+| ----------------- | -------- | -------------------------------------------------------- |
+| `RFQ_WEBHOOK_URL` | No       | HTTPS endpoint that receives validated RFQ payloads. Without it, the form returns an explicit unavailable response. |
+
+Contact details (phone and email) are **not** environment variables — they live in `src/lib/constants.ts` and can be updated there directly.
+
+### Deploying to Vercel
+
+Add `RFQ_WEBHOOK_URL` under **Settings → Environment Variables** in your Vercel project when you are ready to enable form delivery. No other environment variables are needed.
+
 ## Routes
 
-| Route             | Description                                                                                                                                                              |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `/`               | Product-reference landing page with category links and inquiry prompts |
-| `/shop`           | Searchable catalog with category selection, name sorting, and saved searches |
-| `/product/[id]`   | Product reference with inquiry-confirmed specifications and a print-friendly view |
-| `/compare`        | Compare selected product references |
-| `/quote-deck`     | Review styles and project details before an inquiry |
-| `/infrastructure` | Operations information; facility and production details are confirmed per inquiry |
-| `/about`          | Overview of the product inquiry process |
-| `/contact`        | RFQ form that submits to `/api/rfq` with validation, delivery status, and error states |
-| `/faq`            | Answers to common buyer questions |
-| `/privacy`        | Privacy policy for RFQ submissions |
-| `/terms`          | Quotation, sampling, and quality terms |
-| `/sustainability` | Materials, environmental practices, and compliance information available on request |
+| Route             | Description                                                                 |
+| ----------------- | --------------------------------------------------------------------------- |
+| `/`               | Landing page with category links, facility strip, hardware details, and inquiry prompts |
+| `/shop`           | Searchable catalog with category filter, name sorting, and saved filter presets |
+| `/product/[id]`   | Product reference with image gallery, lightbox, specs, and related products |
+| `/compare`        | Side-by-side comparison of up to 4 selected product references              |
+| `/quote-deck`     | Review selected styles, edit quantities and notes, export PDF, submit RFQ   |
+| `/infrastructure` | Facility overview with 9-image grid and production capability details       |
+| `/about`          | Company overview, inquiry process steps, facility and hardware image strips |
+| `/contact`        | RFQ form with category selection, quote deck pre-fill, and delivery status  |
+| `/faq`            | Answers to common buyer questions                                           |
+| `/sustainability` | Materials, dyeing, environmental practices, and compliance information      |
+| `/privacy`        | Privacy policy for RFQ submissions                                          |
+| `/terms`          | Quotation, sampling, and quality terms                                      |
 
-Additional conventions: `/sitemap.xml` and `/robots.txt` are generated; unknown product IDs and unmatched URLs render a branded 404 page (`not-found.tsx`), and runtime errors are caught by a branded `error.tsx` boundary.
-
-Shared layout chrome (site header with responsive mobile menu and site footer) lives in `src/components/header.tsx` and `src/components/footer.tsx` and is composed into each page.
+Additional conventions: `/sitemap.xml` and `/robots.txt` are generated automatically. Unknown product IDs and unmatched URLs render a branded 404 page (`not-found.tsx`); runtime errors are caught by a branded `error.tsx` boundary.
 
 ## Project Structure
 
@@ -62,44 +73,65 @@ Shared layout chrome (site header with responsive mobile menu and site footer) l
 src/
 ├── app/                          # App Router routes and route-specific UI
 │   ├── page.tsx                  # Home page
-│   ├── layout.tsx                # Root layout and metadata
+│   ├── layout.tsx                # Root layout, metadata, and JSON-LD
 │   ├── api/rfq/                  # RFQ validation and webhook delivery
-│   ├── shop/_components/         # Catalog controls, product cards, catalog page
+│   ├── shop/_components/         # Catalog browser, controls, and product cards
 │   ├── product/[id]/             # Product reference route
-│   ├── product/_components/      # Product gallery and print view
+│   ├── product/_components/      # Product gallery, lightbox, and print button
 │   ├── contact/_components/      # Contact page and RFQ form
 │   ├── about/_components/        # About page
 │   ├── faq/_components/          # FAQ accordion
 │   ├── infrastructure/_components/
 │   ├── compare/, quote-deck/, sustainability/, privacy/, terms/
 ├── components/
-│   ├── header.tsx                # Shared site header and navigation
+│   ├── header.tsx                # Shared site header and responsive mobile nav
 │   ├── footer.tsx                # Shared site footer
-│   ├── home/                     # Home page sections
-│   └── ui/                       # Shared shadcn/ui primitives
-├── hooks/                        # Shared React hooks
+│   ├── home/                     # Home page sections (hero, segment grid, facility strip, hardware strip, sustainability panel, sample request)
+│   └── ui/                       # shadcn/ui primitives (toast actively used)
+├── hooks/
+│   └── use-mobile.ts             # Mobile breakpoint hook (used by sidebar)
 └── lib/
-    ├── products.ts               # Catalog and product-reference data
-    ├── catalog-storage.ts        # Browser storage for quote and compare lists
+    ├── constants.ts              # Contact phone and email — edit here to update site-wide
+    ├── products.ts               # Catalog data (10 products, 6 categories)
+    ├── catalog-storage.ts        # Browser localStorage for quote deck and compare list
     └── utils.ts                  # Shared utilities
-design/                           # Design references and source screenshots
 public/
 ├── akara-logo.svg                # Brand logo
-└── products/                     # Optimized local product-reference images
+├── products/                     # Product reference images (.jpg)
+└── *.webp                        # Facility, lifestyle, and hardware images
 ```
+
+## Product Catalog
+
+10 products across 6 categories, all defined in `src/lib/products.ts`:
+
+| Category          | Products                                      |
+| ----------------- | --------------------------------------------- |
+| `mens-denim`      | Men's Selvedge Denim, Tapered Denim, Relaxed Denim |
+| `womens-denim`    | Women's Denim, Women's Fashion Denim          |
+| `kids-jeans`      | Kids' Denim                                   |
+| `cotton-apparels` | Utility Apparel, Formal Trousers & Chinos     |
+| `jackets`         | Denim Jacket                                  |
+| `overshirts`      | Overshirt                                     |
+
+To add a product, append an entry to the `products` array in `src/lib/products.ts`. The catalog, sitemap, and product pages update automatically.
+
+## Contact Details
+
+Phone and email are defined once in `src/lib/constants.ts`:
+
+```ts
+export const CONTACT_PHONE = "+917817966192"
+export const CONTACT_EMAIL = "chinmaysamanta@gmail.com"
+```
+
+These are imported wherever the values appear in the UI (footer, contact page, sample request section, privacy policy, terms, and API error messages). Update this file to change them site-wide.
 
 ## Notes
 
-- The product gallery uses optimized local reference images in `public/products/`; other illustrative product and lifestyle images are still loaded from remote sources. `next.config.ts` restricts `images.remotePatterns` to the required hosts. Replace illustrative references with approved product photography when available.
-- Product data lives in a single module (`src/lib/products.ts`) shared by the catalog and spec-sheet pages — there is no database or CMS yet. The catalog and RFQ form preserve quote selections in browser storage. RFQ delivery requires the server-side `RFQ_WEBHOOK_URL` environment variable to point to an HTTPS endpoint; the API acknowledges a submission only after that endpoint accepts it. Without the variable, requests return an explicit unavailable response. File attachments are not supported.
-- Route-specific components live beside their route; reusable site-wide components belong in `src/components/`. The catalog is split into browser state/orchestration, filter and saved-search controls, and individual product cards.
-- `src/components/ui/` includes generated shadcn/ui primitives. In the latest dependency-graph audit, 13 of 61 modules were reachable from application imports; the rest appear unreferenced. They remain as a scaffold library, but check direct and transitive imports before removing one or adding another dependency.
-- `design/` is a reference archive and is not served by the site. Production static assets belong in `public/`.
+- All product and facility images are local `.webp` or `.jpg` files in `public/`. No remote image sources are used. `next.config.ts` can be simplified to remove `remotePatterns` if no external images are added.
+- RFQ delivery requires `RFQ_WEBHOOK_URL` to be set server-side. The API validates the payload, forwards it to the webhook over HTTPS, and only acknowledges success after the endpoint accepts it. File attachments are not supported.
+- The Quote Deck, Compare list, and saved filter presets are stored in browser `localStorage`. They are cleared when the user clears site data.
+- `src/components/ui/` contains the full shadcn/ui scaffold. Only `toast.tsx` is actively imported by the application. The rest remain available but are unreferenced.
 - Run `npx tsc --noEmit` for a TypeScript-only check; `pnpm lint` runs Biome.
-- The Biome formatter is configured to the existing codebase style (4-space indent, `asNeeded` semicolons); `src/components/ui/**` has rule overrides for intentional shadcn patterns.
-
-## Learn More
-
-- [Next.js Documentation](https://nextjs.org/docs) — learn about Next.js features and API
-- [Learn Next.js](https://nextjs.org/learn) — an interactive Next.js tutorial
-- [Biome Documentation](https://biomejs.dev/lint/) — lint rules used by this project
+- The Biome formatter uses 4-space indent and `asNeeded` semicolons. `src/components/ui/**` has rule overrides for intentional shadcn patterns.

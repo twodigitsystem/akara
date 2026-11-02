@@ -93,7 +93,7 @@ export default function TermsPage() {
                         Terms of use
                     </h1>
                     <p className="mt-4 text-sm text-[#596171]">
-                        Last updated: October 31, 2026
+                        Last updated: {new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
                     </p>
                     <p className="mt-6 rounded-lg border border-[#d8dff8] bg-[#eef1ff] p-4 text-sm leading-6 text-[#303d69]">
                         These terms cover use of this informational catalog and
@@ -133,14 +133,14 @@ export default function TermsPage() {
                                 </Link>{" "}
                                 or call{" "}
                                 <a
-                                    href="tel:+917817966192"
+                                    href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}
                                     className="inline-flex items-center gap-1 font-medium text-[#4059aa] underline underline-offset-2"
                                 >
                                     <Phone
                                         aria-hidden="true"
                                         className="h-3.5 w-3.5"
                                     />
-                                    +91 7817 966 192
+                                    {process.env.NEXT_PUBLIC_CONTACT_PHONE}
                                 </a>
                                 .
                             </p>

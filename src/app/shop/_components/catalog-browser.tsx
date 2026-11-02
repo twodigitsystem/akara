@@ -4,7 +4,6 @@ import { GitCompare, Search, ShoppingBag, X } from "lucide-react"
 import Link from "next/link"
 import { Suspense, useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "next/navigation"
-import { ProductCardSkeleton } from "@/components/loading-skeleton"
 import { toast } from "@/components/ui/toast"
 import {
     clearQuoteDeck,
@@ -307,15 +306,20 @@ export function CatalogBrowser() {
                     <Suspense
                         fallback={
                             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-                                {[
-                                    "skeleton-1",
-                                    "skeleton-2",
-                                    "skeleton-3",
-                                    "skeleton-4",
-                                    "skeleton-5",
-                                    "skeleton-6",
-                                ].map((key) => (
-                                    <ProductCardSkeleton key={key} />
+                                {[1, 2, 3, 4, 5, 6].map((i) => (
+                                    <div key={i} className="flex flex-col overflow-hidden bg-white shadow-sm rounded-xl">
+                                        <div className="aspect-[4/3] bg-[#e9e8e5] animate-pulse" />
+                                        <div className="flex flex-1 flex-col gap-4 p-5">
+                                            <div className="space-y-2">
+                                                <div className="h-4 w-20 bg-[#e9e8e5] rounded animate-pulse" />
+                                                <div className="h-6 w-3/4 bg-[#e9e8e5] rounded animate-pulse" />
+                                            </div>
+                                            <div className="flex gap-2">
+                                                <div className="flex-1 h-10 bg-[#e9e8e5] rounded animate-pulse" />
+                                                <div className="w-10 h-10 bg-[#e9e8e5] rounded animate-pulse" />
+                                            </div>
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                         }

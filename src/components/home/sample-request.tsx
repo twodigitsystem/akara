@@ -35,26 +35,26 @@ export function SampleRequest() {
 
                     <div>
                         <p className="mb-3 text-sm text-[#5d6575]">
-                            Illustrative apparel imagery; not a sample
-                            availability listing.
+                            Illustrative product references only. Use them to
+                            show the style or detail you want to discuss.
                         </p>
                         <div className="grid gap-4 sm:grid-cols-2">
                             {[
                                 {
-                                    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
-                                    alt: "Illustrative men's denim reference",
+                                    image: "/products/mens-selvedge-denim-reference.jpg",
+                                    alt: "Illustrative men's denim product reference",
                                 },
                                 {
-                                    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80",
-                                    alt: "Illustrative women's denim reference",
+                                    image: "/products/mens-denim-selvedge-detail.jpg",
+                                    alt: "Illustrative denim fabric construction detail",
                                 },
                                 {
-                                    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80",
-                                    alt: "Illustrative apparel lifestyle reference",
+                                    image: "/products/cotton-formal-trouser-reference.jpg",
+                                    alt: "Illustrative trouser product reference",
                                 },
                                 {
-                                    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80",
-                                    alt: "Illustrative fashion collection reference",
+                                    image: "/products/cotton-trouser-construction-detail.jpg",
+                                    alt: "Illustrative trouser construction detail",
                                 },
                             ].map(({ image, alt }) => (
                                 <div

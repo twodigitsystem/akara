@@ -223,8 +223,8 @@ export default function QuoteDeckPage() {
                 <SiteHeader />
                 <main className="pt-20">
                     <section className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6">
-                        <h1 className="text-4xl font-bold uppercase text-black sm:text-5xl">
-                            Your Quote Deck is Empty
+                        <h1 className="text-4xl font-bold text-black sm:text-5xl">
+                            Your quote deck is empty
                         </h1>
                         <p className="mt-4 text-[#44474c]">
                             Browse our catalog and add products to build your

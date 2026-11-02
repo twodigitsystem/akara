@@ -1,4 +1,5 @@
 import { Building2, ClipboardCheck, Factory, Settings } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { SiteFooter } from "@/components/footer"
 import { SiteHeader } from "@/components/header"
@@ -23,6 +24,54 @@ const topics = [
         title: "Quality & compliance",
         detail: "Agree inspection criteria and request current supporting documents.",
         icon: ClipboardCheck,
+    },
+]
+
+const facilityImages = [
+    {
+        src: "/busy_industrial_garment_stitching_floor_in_an_indian_apparel_manufacturing_converted.webp",
+        alt: "Industrial garment stitching floor",
+        label: "Stitching floor",
+    },
+    {
+        src: "/high_precision_fabric_cutting_table_in_an_apparel_factory_large_multi_ply_converted.webp",
+        alt: "Fabric cutting table in apparel factory",
+        label: "Fabric cutting",
+    },
+    {
+        src: "/high_precision_automated_cnc_fabric_spreading_and_multi_ply_cutting_machine_in_converted.webp",
+        alt: "Automated CNC fabric spreading and multi-ply cutting machine",
+        label: "CNC spreading & cutting",
+    },
+    {
+        src: "/advanced_commercial_garment_finishing_and_steam_pressing_station_in_a_garment_converted.webp",
+        alt: "Garment finishing and steam pressing station",
+        label: "Finishing & pressing",
+    },
+    {
+        src: "/industrial_commercial_photography_of_an_advanced_computerized_laser_denim_converted.webp",
+        alt: "Advanced computerized laser denim finishing machine",
+        label: "Laser denim finishing",
+    },
+    {
+        src: "/professional_industrial_photography_of_an_apparel_testing_and_quality_control_converted.webp",
+        alt: "Apparel testing and quality control station",
+        label: "Quality control",
+    },
+    {
+        src: "/industrial_photography_of_textile_raw_material_fabric_roll_inventory_warehouse._converted.webp",
+        alt: "Textile fabric roll inventory warehouse",
+        label: "Fabric warehouse",
+    },
+    {
+        src: "/commercial_b2b_apparel_wholesale_packing_and_dispatch_zone_branded_akara_and_converted.webp",
+        alt: "Apparel wholesale packing and dispatch zone",
+        label: "Packing & dispatch",
+    },
+    {
+        src: "/industrial_environmental_photography_of_a_modern_zero_liquid_discharge_zld_converted.webp",
+        alt: "Zero liquid discharge water treatment plant",
+        label: "ZLD water treatment",
     },
 ]
 
@@ -53,6 +102,33 @@ export function InfrastructurePage() {
                         >
                             Discuss your requirements
                         </Link>
+                    </div>
+                </section>
+
+                <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6">
+                    <div className="mb-5">
+                        <span className="text-xs font-semibold text-[#4059aa]">Facility overview</span>
+                        <h2 className="mt-1 text-2xl font-bold tracking-[-0.03em] text-black">
+                            Inside the facility
+                        </h2>
+                    </div>
+                    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                        {facilityImages.map(({ src, alt, label }) => (
+                            <div key={src} className="group relative aspect-video overflow-hidden rounded-xl bg-[#e9e8e5]">
+                                <Image
+                                    src={src}
+                                    alt={alt}
+                                    fill
+                                    sizes="(min-width: 1280px) 420px, (min-width: 640px) 50vw, 100vw"
+                                    className="object-cover transition duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-x-3 bottom-3">
+                                    <span className="rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                                        {label}
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </section>
 

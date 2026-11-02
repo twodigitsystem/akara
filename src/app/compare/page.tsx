@@ -68,8 +68,8 @@ export default function ComparePage() {
                 <SiteHeader />
                 <main className="pt-20">
                     <section className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6">
-                        <h1 className="text-4xl font-bold uppercase text-black sm:text-5xl">
-                            No Products to Compare
+                        <h1 className="text-4xl font-bold text-black sm:text-5xl">
+                            No products to compare
                         </h1>
                         <p className="mt-4 text-[#44474c]">
                             Select products from the catalog to compare their

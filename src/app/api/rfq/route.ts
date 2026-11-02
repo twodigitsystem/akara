@@ -148,10 +148,12 @@ export async function POST(request: NextRequest) {
     }
 
     const webhookUrl = process.env.RFQ_WEBHOOK_URL
+    const phone = process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "+91 7817 966 192"
+
     if (!webhookUrl) {
         return NextResponse.json(
             {
-                error: "Online RFQ delivery is not configured. Please call +91 7817 966 192 to submit your request.",
+                error: `Online RFQ delivery is not configured. Please call ${phone} to submit your request.`,
             },
             { status: 503 },
         )
@@ -163,7 +165,7 @@ export async function POST(request: NextRequest) {
     } catch {
         return NextResponse.json(
             {
-                error: "RFQ delivery is temporarily unavailable. Please call +91 7817 966 192.",
+                error: `RFQ delivery is temporarily unavailable. Please call ${phone}.`,
             },
             { status: 503 },
         )
@@ -171,7 +173,7 @@ export async function POST(request: NextRequest) {
     if (destination.protocol !== "https:") {
         return NextResponse.json(
             {
-                error: "RFQ delivery is temporarily unavailable. Please call +91 7817 966 192.",
+                error: `RFQ delivery is temporarily unavailable. Please call ${phone}.`,
             },
             { status: 503 },
         )
@@ -189,7 +191,7 @@ export async function POST(request: NextRequest) {
         if (!delivery.ok) {
             return NextResponse.json(
                 {
-                    error: "We could not deliver your RFQ right now. Please try again or call +91 7817 966 192.",
+                    error: `We could not deliver your RFQ right now. Please try again or call ${phone}.`,
                 },
                 { status: 502 },
             )
@@ -197,7 +199,7 @@ export async function POST(request: NextRequest) {
     } catch {
         return NextResponse.json(
             {
-                error: "We could not deliver your RFQ right now. Please try again or call +91 7817 966 192.",
+                error: `We could not deliver your RFQ right now. Please try again or call ${phone}.`,
             },
             { status: 502 },
         )

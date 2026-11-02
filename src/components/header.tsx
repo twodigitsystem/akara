@@ -23,6 +23,7 @@ export function SiteHeader() {
         ...primaryNavigation,
         ...additionalNavigation,
         { label: "Quote Deck", href: "/quote-deck" },
+        { label: "Compare", href: "/compare" },
     ]
 
     useEffect(() => {
@@ -47,7 +48,8 @@ export function SiteHeader() {
                         width={190}
                         height={44}
                         priority
-                        className="h-auto w-[148px] sm:w-[172px] lg:w-[190px]"
+                        style={{ height: "auto" }}
+                        className="w-[148px] sm:w-[172px] lg:w-[190px]"
                     />
                 </Link>
 

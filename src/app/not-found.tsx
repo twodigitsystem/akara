@@ -11,9 +11,19 @@ export default function NotFound() {
                 width={190}
                 height={44}
                 priority
-                className="h-auto w-[172px] sm:w-[190px]"
+                style={{ height: "auto" }}
+                className="w-[172px] sm:w-[190px]"
             />
-            <div className="mt-8 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#e9e8e5]">
+            <div className="relative mt-8 h-40 w-full max-w-sm overflow-hidden rounded-xl bg-[#e9e8e5]">
+                <Image
+                    src="/cinematic_wide_commercial_banner_photography_for_akara_denim_and_apparel_converted.webp"
+                    alt="Akara denim and apparel collection"
+                    fill
+                    sizes="384px"
+                    className="object-cover opacity-60"
+                />
+            </div>
+            <div className="mt-6 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#e9e8e5]">
                 <AlertTriangle className="h-4 w-4 text-[#c87d32]" />
                 <span className="font-mono text-xs font-bold text-[#1a1c1a] uppercase">
                     ERROR 404

@@ -25,7 +25,7 @@ export async function generateMetadata({
             description: product.detail,
             images: [
                 {
-                    url: product.image,
+                    url: `https://akara.co.in${product.image}`,
                     alt: product.title,
                     width: 1200,
                     height: 630,
@@ -37,7 +37,7 @@ export async function generateMetadata({
             card: "summary_large_image",
             title: product.title,
             description: product.detail,
-            images: [product.image],
+            images: [`https://akara.co.in${product.image}`],
         },
     }
 }
@@ -55,7 +55,7 @@ export default async function Page({
         "@type": "Product",
         name: product.title,
         description: product.description,
-        image: new URL(product.image, "https://akara.co.in").toString(),
+        image: `https://akara.co.in${product.image}`,
         category: product.category,
     }).replace(/</g, "\\u003c")
 

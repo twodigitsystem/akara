@@ -1,5 +1,6 @@
-import { HelpCircle } from "lucide-react"
+import { ArrowRight, HelpCircle } from "lucide-react"
 import type { Metadata } from "next"
+import Link from "next/link"
 import { SiteFooter } from "@/components/footer"
 import { SiteHeader } from "@/components/header"
 import { FAQAccordion } from "./_components/faq-accordion"
@@ -29,6 +30,21 @@ export default function FAQPage() {
                         are confirmed for each project.
                     </p>
                     <FAQAccordion />
+                    <div className="mt-10 rounded-xl bg-[#0d1a2d] px-6 py-8 text-center">
+                        <h2 className="text-xl font-bold text-white">
+                            Still have questions?
+                        </h2>
+                        <p className="mt-2 text-sm leading-6 text-[#94a3b8]">
+                            Our team can confirm specifics for your inquiry.
+                        </p>
+                        <Link
+                            href="/contact"
+                            className="mt-5 inline-flex min-h-11 items-center gap-2 rounded bg-[#4059aa] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#334d8f]"
+                        >
+                            Contact our team
+                            <ArrowRight className="h-4 w-4" />
+                        </Link>
+                    </div>
                 </section>
             </main>
             <SiteFooter />

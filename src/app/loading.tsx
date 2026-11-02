@@ -9,7 +9,8 @@ export default function Loading() {
                 width={190}
                 height={44}
                 priority
-                className="h-auto w-[172px] sm:w-[190px] animate-pulse"
+                style={{ height: "auto" }}
+                className="w-[172px] sm:w-[190px] animate-pulse"
             />
             <div className="mt-8 flex flex-col items-center gap-4">
                 <div className="flex items-center gap-2">

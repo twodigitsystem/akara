@@ -6,10 +6,10 @@ import { useEffect } from "react"
 
 export default function RouteError({
     error,
-    retry,
+    reset,
 }: {
     error: Error & { digest?: string }
-    retry: () => void
+    reset: () => void
 }) {
     useEffect(() => {
         console.error(error)
@@ -33,7 +33,7 @@ export default function RouteError({
             <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <button
                     type="button"
-                    onClick={() => retry()}
+                    onClick={() => reset()}
                     className="inline-flex items-center gap-2 rounded bg-black px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-[#4059aa]"
                 >
                     <RefreshCw className="h-4 w-4" />

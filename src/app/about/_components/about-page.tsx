@@ -1,4 +1,9 @@
-import { ArrowRight, CheckCircle, ClipboardList, MessageCircle } from "lucide-react"
+import {
+    ArrowRight,
+    CheckCircle,
+    ClipboardList,
+    MessageCircle,
+} from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { SiteFooter } from "@/components/footer"
@@ -42,6 +47,13 @@ export function AboutPage() {
                             compliance information are confirmed with our team
                             for each inquiry.
                         </p>
+                        <p className="mt-4 max-w-2xl text-base leading-7 text-[#44474c]">
+                            Akara (S.Archana Garments) is a denim and apparel
+                            manufacturer based in Ahmedabad, India. We work
+                            with buyers across men's, women's, and kids' denim,
+                            cotton trousers, jackets, and overshirts — from
+                            sampling through to bulk production.
+                        </p>
                         <div className="mt-7 flex flex-wrap items-center gap-3">
                             <Link
                                 href="/shop"
@@ -62,16 +74,45 @@ export function AboutPage() {
                     <div className="lg:col-span-5">
                         <div className="relative aspect-4/5 overflow-hidden rounded-xl bg-[#e9e8e5] shadow-lg">
                             <Image
-                                src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80"
-                                alt="Illustrative apparel product reference"
+                                src="/cinematic_wide_fashion_catalog_lookbook_editorial_banner_fashionable_indian_converted.webp"
+                                alt="Illustrative apparel collection reference"
                                 fill
                                 sizes="(min-width: 1024px) 42vw, 100vw"
                                 className="object-cover"
                             />
                             <div className="absolute inset-x-3 bottom-3 rounded bg-[#0f1c2f]/90 p-3 text-sm font-medium text-white backdrop-blur-sm">
-                                Illustrative reference image
+                                Illustrative collection reference
                             </div>
                         </div>
+                    </div>
+                </section>
+
+                <section className="mx-auto max-w-7xl px-4 pb-4 sm:px-6">
+                    <div className="grid grid-cols-3 gap-3">
+                        {[
+                            {
+                                src: "/professional_commercial_photography_of_a_modern_b2b_apparel_buyer_showroom_in_converted.webp",
+                                alt: "Modern B2B apparel buyer showroom",
+                                label: "Buyer showroom",
+                            },
+                            {
+                                src: "/master_sample_tailoring_room_in_a_garment_manufacturing_plant_bespoke_sample_converted.webp",
+                                alt: "Master sample tailoring room",
+                                label: "Sample room",
+                            },
+                            {
+                                src: "/industrial_commercial_photography_of_a_large_logistics_transport_truck_loading_converted.webp",
+                                alt: "Garment export logistics and dispatch",
+                                label: "Export & dispatch",
+                            },
+                        ].map(({ src, alt, label }) => (
+                            <div key={src} className="group relative aspect-video overflow-hidden rounded-xl bg-[#e9e8e5]">
+                                <Image src={src} alt={alt} fill sizes="(min-width: 1280px) 390px, (min-width: 640px) 33vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" />
+                                <div className="absolute inset-x-3 bottom-3">
+                                    <span className="rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">{label}</span>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </section>
 
@@ -88,7 +129,10 @@ export function AboutPage() {
                         <div className="grid gap-4 md:grid-cols-3">
                             {projectSteps.map(
                                 ({ title, detail, icon: Icon }, index) => (
-                                    <div key={title} className="relative flex items-stretch gap-4">
+                                    <div
+                                        key={title}
+                                        className="relative flex items-stretch gap-4"
+                                    >
                                         <article className="flex min-h-56 flex-1 flex-col bg-white p-5 shadow-sm">
                                             <div className="flex items-center justify-between">
                                                 <Icon className="h-6 w-6 text-[#4059aa]" />
@@ -115,13 +159,48 @@ export function AboutPage() {
                     </div>
                 </section>
 
+                <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6">
+                    <div className="mb-4">
+                        <span className="text-xs font-semibold text-[#44474c]">Craftsmanship details</span>
+                        <h2 className="mt-1 text-2xl font-bold tracking-[-0.03em] text-black">Built into every garment</h2>
+                    </div>
+                    <div className="grid grid-cols-3 gap-3">
+                        {[
+                            {
+                                src: "/Professional macro product photography of heavy-duty copper denim rivets for akara bottom wear, stamped logo detail, on a dark slate background, studio lighting, high _converted.webp",
+                                alt: "Heavy-duty copper denim rivets with stamped logo detail",
+                                label: "Copper rivets",
+                            },
+                            {
+                                src: "/Professional macro product photography of an embossed genuine leather patch for akara denim and trouser waistbands, detailed texture, on a dark slate background, studi_converted.webp",
+                                alt: "Embossed genuine leather patch for denim waistbands",
+                                label: "Leather patch",
+                            },
+                            {
+                                src: "/Professional macro product photography of a branded woven waistband label and tag for akara premium denim, clean typography, on a dark slate background, studio lightin_converted.webp",
+                                alt: "Branded woven waistband label and tag",
+                                label: "Woven label",
+                            },
+                        ].map(({ src, alt, label }) => (
+                            <div key={src} className="group relative aspect-square overflow-hidden rounded-xl bg-[#1a1c1a]">
+                                <Image src={src} alt={alt} fill sizes="(min-width: 1280px) 390px, (min-width: 640px) 33vw, 100vw" className="object-cover opacity-90 transition duration-500 group-hover:scale-105 group-hover:opacity-100" />
+                                <div className="absolute inset-x-3 bottom-3">
+                                    <span className="rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">{label}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
                 <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16">
                     <div className="rounded-2xl bg-[#0d1a2d] px-8 py-12 text-center">
                         <h2 className="text-3xl font-bold tracking-[-0.04em] text-white sm:text-4xl">
                             Ready to start your inquiry?
                         </h2>
                         <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-[#94a3b8]">
-                            Share your brief and our team will confirm specifications, minimums, and timelines for your project.
+                            Share your brief and our team will confirm
+                            specifications, minimums, and timelines for your
+                            project.
                         </p>
                         <div className="mt-8 flex flex-wrap justify-center gap-3">
                             <Link

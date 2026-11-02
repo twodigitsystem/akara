@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { SiteFooter } from "@/components/footer"
 import { SiteHeader } from "@/components/header"
-import type { Product } from "@/lib/products"
+import { type Product, products } from "@/lib/products"
 import { PrintSheetButton } from "./print-sheet-button"
 
 export function ProductGallery({ product }: { product: Product }) {
@@ -164,6 +164,43 @@ export function ProductGallery({ product }: { product: Product }) {
                         </h2>
                     </div>
                 </section>
+
+                {(() => {
+                    const related = products
+                        .filter((p) => p.category === product.category && p.slug !== product.slug)
+                        .slice(0, 3)
+                    if (related.length === 0) return null
+                    return (
+                        <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 print:hidden">
+                            <h2 className="mb-5 text-xl font-bold tracking-tight text-black">
+                                More in {product.category.replaceAll("-", " ")}
+                            </h2>
+                            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                                {related.map((p) => (
+                                    <Link
+                                        key={p.slug}
+                                        href={`/product/${p.slug}`}
+                                        className="group overflow-hidden rounded-xl bg-white shadow-sm transition hover:shadow-md"
+                                    >
+                                        <div className="relative aspect-video overflow-hidden bg-[#e9e8e5]">
+                                            <Image
+                                                src={p.image}
+                                                alt={`${p.title} illustrative reference`}
+                                                fill
+                                                sizes="(min-width: 1280px) 380px, (min-width: 640px) 50vw, 100vw"
+                                                className="object-cover transition duration-500 group-hover:scale-105"
+                                            />
+                                        </div>
+                                        <div className="p-4">
+                                            <p className="text-sm font-semibold text-black">{p.title}</p>
+                                            <p className="mt-1 text-xs text-[#596171]">{p.detail}</p>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </section>
+                    )
+                })()}
 
                 {isLightboxOpen && (
                     <div

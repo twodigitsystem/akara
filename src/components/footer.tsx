@@ -54,7 +54,8 @@ export function SiteFooter() {
                                 alt="Akara Denim & Apparel Mfg"
                                 width={210}
                                 height={48}
-                                className="h-auto w-[180px] sm:w-[200px]"
+                                style={{ height: "auto" }}
+                                className="w-[180px] sm:w-[200px]"
                             />
                         </Link>
                         <p className="mt-5 max-w-sm text-sm leading-6 text-white/70">
@@ -112,15 +113,29 @@ export function SiteFooter() {
                             Discuss product development, samples, and production
                             requirements with our team.
                         </p>
+                        <p className="mt-3 text-sm leading-6 text-white/70">
+                            S.Archana Garments<br />
+                            Ahmedabad, India
+                        </p>
                         <a
-                            href="tel:+917817966192"
+                            href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}
                             className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white transition-colors hover:text-[#b8c5ff]"
                         >
                             <Phone
                                 aria-hidden="true"
                                 className="h-4 w-4 text-[#b8c5ff]"
                             />
-                            +91 7817 966 192
+                            {process.env.NEXT_PUBLIC_CONTACT_PHONE}
+                        </a>
+                        <a
+                            href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
+                            className="mt-1 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white transition-colors hover:text-[#b8c5ff]"
+                        >
+                            <Mail
+                                aria-hidden="true"
+                                className="h-4 w-4 text-[#b8c5ff]"
+                            />
+                            {process.env.NEXT_PUBLIC_CONTACT_EMAIL}
                         </a>
                         <Link
                             href="/contact"

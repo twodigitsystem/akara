@@ -77,8 +77,8 @@ export function HeroSection() {
                     <div className="relative bg-white p-2 shadow-[0_14px_30px_rgba(15,19,28,0.12)]">
                         <div className="relative h-82.5 w-full overflow-hidden rounded-lg bg-[#efeeeb] sm:h-110">
                             <Image
-                                src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1400&q=80"
-                                alt="Illustrative apparel product reference"
+                                src="/cinematic_wide_commercial_banner_photography_for_akara_denim_and_apparel_converted.webp"
+                                alt="Illustrative apparel collection reference"
                                 fill
                                 sizes="(min-width: 1280px) 500px, (min-width: 1024px) 42vw, 100vw"
                                 priority
@@ -86,7 +86,7 @@ export function HeroSection() {
                             />
                             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
                             <div className="absolute left-4 top-4 rounded bg-white/90 px-3 py-2 text-xs font-medium text-[#1a1c1a] backdrop-blur-sm">
-                                Illustrative product image
+                                Collection reference
                             </div>
                         </div>
                         <div className="absolute inset-x-6 bottom-6 rounded bg-white/95 p-4 shadow-md backdrop-blur-sm">

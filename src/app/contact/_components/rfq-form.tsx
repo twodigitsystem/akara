@@ -1,6 +1,6 @@
 "use client"
 
-import { CheckCircle, Mail, MessageSquare, User } from "lucide-react"
+import { CheckCircle, Loader2, Mail, MessageSquare, User } from "lucide-react"
 import { useEffect, useState } from "react"
 import {
     clearQuoteDeck,
@@ -51,6 +51,8 @@ export function RfqForm({ categories }: { categories: Category[] }) {
             "womens-denim": "womens",
             "kids-jeans": "kids",
             "cotton-apparels": "chinos",
+            "jackets": "jackets",
+            "overshirts": "overshirts",
         }
         const category = quoteItems[0]
             ? categoryByProductCategory[quoteItems[0].product.category]
@@ -138,7 +140,7 @@ export function RfqForm({ categories }: { categories: Category[] }) {
             setStatus({
                 state: "error",
                 message:
-                    "Network error. Please try again or call +91 7817 966 192.",
+                    "Network error. Please try again or contact us directly.",
             })
         }
     }
@@ -146,7 +148,7 @@ export function RfqForm({ categories }: { categories: Category[] }) {
     if (status.state === "success") {
         return (
             <div className="flex min-h-130 flex-col items-center justify-center bg-white p-5 text-center shadow-lg sm:p-7 lg:col-span-7">
-                <div className="text-4xl text-[#4059aa]">✓</div>
+                <CheckCircle className="h-12 w-12 text-[#4059aa]" />
                 <h2 className="mt-4 text-3xl font-bold uppercase text-black">
                     Request received.
                 </h2>
@@ -342,7 +344,7 @@ export function RfqForm({ categories }: { categories: Category[] }) {
             >
                 {status.state === "submitting" ? (
                     <>
-                        <span className="animate-spin">⏳</span>
+                        <Loader2 className="h-4 w-4 animate-spin" />
                         Submitting…
                     </>
                 ) : (

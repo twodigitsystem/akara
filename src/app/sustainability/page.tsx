@@ -6,6 +6,7 @@ import {
     Sprout,
 } from "lucide-react"
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { SiteFooter } from "@/components/footer"
 import { SiteHeader } from "@/components/header"
@@ -73,6 +74,51 @@ export default function SustainabilityPage() {
                                 </p>
                             </div>
                         ))}
+                    </div>
+
+                    <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                        <div className="relative aspect-video overflow-hidden rounded-xl bg-[#e9e8e5]">
+                            <Image
+                                src="/extreme_macro_photography_of_premium_cotton_twill_poplin_and_gabardine_fabric_converted.webp"
+                                alt="Premium cotton twill and fabric material close-up"
+                                fill
+                                sizes="(min-width: 1280px) 390px, (min-width: 640px) 33vw, 100vw"
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-x-3 bottom-3">
+                                <span className="rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                                    Fabric materials
+                                </span>
+                            </div>
+                        </div>
+                        <div className="relative aspect-video overflow-hidden rounded-xl bg-[#e9e8e5]">
+                            <Image
+                                src="/industrial_textile_dyeing_and_chemical_finishing_plant_large_stainless_steel_converted.webp"
+                                alt="Industrial textile dyeing and chemical finishing plant"
+                                fill
+                                sizes="(min-width: 1280px) 390px, (min-width: 640px) 33vw, 100vw"
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-x-3 bottom-3">
+                                <span className="rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                                    Dyeing & finishing
+                                </span>
+                            </div>
+                        </div>
+                        <div className="relative aspect-video overflow-hidden rounded-xl bg-[#e9e8e5]">
+                            <Image
+                                src="/professional_studio_product_photography_of_eco_friendly_apparel_compliance_tags_converted.webp"
+                                alt="Eco-friendly apparel compliance tags and certifications"
+                                fill
+                                sizes="(min-width: 1280px) 390px, (min-width: 640px) 33vw, 100vw"
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-x-3 bottom-3">
+                                <span className="rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                                    Compliance & certifications
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
